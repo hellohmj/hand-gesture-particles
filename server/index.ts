@@ -2,6 +2,7 @@ import express, { type Request, Response, NextFunction } from "express";
 import { registerRoutes } from "./routes";
 import { serveStatic } from "./static";
 import { createServer } from "http";
+import os from "os";
 
 const app = express();
 const httpServer = createServer(app);
@@ -89,10 +90,20 @@ app.use((req, res, next) => {
     {
       port,
       host: "0.0.0.0",
-      reusePort: true,
     },
     () => {
-      log(`serving on port ${port}`);
+      const interfaces = os.networkInterfaces();
+      let ip = "localhost";
+      for (const name of Object.keys(interfaces)) {
+        for (const iface of interfaces[name]!) {
+          if (iface.family === "IPv4" && !iface.internal) {
+            ip = iface.address;
+            break;
+          }
+        }
+        if (ip !== "localhost") break;
+      }
+      log(`serving on http://${ip}:${port}`);
     },
   );
 })();

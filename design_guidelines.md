@@ -123,3 +123,4 @@
 3. Fullscreen Button (always accessible)
 4. Webcam Indicator (status feedback)
 5. Loading State (initialization only)
+
