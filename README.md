@@ -125,7 +125,7 @@ https://github.com/hellohmj/hand-gesture-particles/new/main?filename=README.md
 3. Fullscreen Button (always accessible)
 4. Webcam Indicator (status feedback)
 5. Loading State (initialization only)
-
+## run by Node.js in Terminal
 netstat -ano | findstr :5000
 
 npm run dev
